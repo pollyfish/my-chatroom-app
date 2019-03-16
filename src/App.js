@@ -23,7 +23,11 @@ class App extends Component {
 
       <div>
        <h1>Welcome!</h1>
-       <RoomList firebase={firebase} />
+       <RoomList firebase={firebase}
+
+      />
+
+
      </div>
       /*all this can be deleted- <div className="App">
         <header className="App-header">
