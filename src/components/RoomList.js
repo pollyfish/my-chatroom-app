@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from './modal';
+import Modal from './Modal';
 class RoomList extends Component {
   constructor(props){
     super(props);
@@ -16,7 +16,9 @@ class RoomList extends Component {
         };
 
   }
-
+handleChange(e) {
+  this.setState({newRoomName: e.target.value })
+}
 
 
 componentDidMount() {
@@ -26,12 +28,11 @@ componentDidMount() {
     this.setState({ rooms: this.state.rooms.concat( room )})
   });
 }
-  createRoom(){
-    this.roomsRef.on('child_added', snapshot => {
-      const room= snapshot.val();
-      room.key=snapshot.key;
-      this.setState({newRoomName: this.state.newRoomName.push( room)})
-    });
+  createRoom(e){
+    e.preventDefault();
+    //if(!this.state.newRoomName) {return}
+    //const newName= {name: this.state.newRoomName}
+    this.roomsRef.push({ name: this.state.newRoomName +''});
 
 }
 
@@ -76,6 +77,9 @@ render() {
             <Modal show={this.state.isOpen}
               onClose={this.toggleModal}>
               `Here's some content for the modal`
+              <form onSubmit={ (e)=> this.createRoom(e)}>
+              <input type="text" value={this.state.newRoomName}
+              onChange={ (e)=> this.handleChange(e)} /><input type="submit" /></form>
             </Modal>
 </div>
 
