@@ -4,6 +4,7 @@ class RoomList extends Component {
   constructor(props){
     super(props);
     this.roomsRef = this.props.firebase.database().ref('rooms');
+    this.createRoom = this.createRoom.bind(this);
     //this.roomsRef= this.props.firebase.database().ref('newRoomName');
     /*---this.state = {
       rooms: [{name:'room1',name:'room2',name:'room3'}]
@@ -14,6 +15,8 @@ class RoomList extends Component {
       newRoomName:'',
       isOpen: false
         };
+
+
 
   }
 handleChange(e) {
@@ -28,20 +31,12 @@ componentDidMount() {
     this.setState({ rooms: this.state.rooms.concat( room )})
   });
 }
-  createRoom(e){
-    e.preventDefault();
-      this.roomsRef.push({ name: this.state.newRoomName +''});
+createRoom(e) {
+  e.preventDefault();
+  if (!this.state.newRoomName) { return };
+  this.roomsRef.push({ name: this.state.newRoomName });
+  this.setState({ newRoomName: '' });
 }
-
-/*clearField(e) {
-if(document.getElementById) {
-document.chatform.roomname.value == " ";
-}
-}
-clearText= () => {
-  document.getElementById("roomname").value = " ";
-}*/
-
 
 toggleModal = () => {
     this.setState({
@@ -57,15 +52,13 @@ toggleModal = () => {
 clearField(e) {
   if(document.getElementById===e)
   document.chatform.roomname.value = "";
-};*/
+};
 
 clearField(e) {
   if(e.value===e)
   e.value = "";
 };
-
-
-
+*/
 
 render() {
 
@@ -84,7 +77,7 @@ render() {
             <Modal show={this.state.isOpen}
               onClose={this.toggleModal}>
               Create new Room
-              <form id="chatform" onSubmit={ (e)=> this.createRoom(e)} onblur={ (e)=> this.clearField(e)}>
+              <form id="chatform" onSubmit={ (e)=> this.createRoom(e)} >
               <input type="text" id="roomname" value={this.state.newRoomName}
               onChange={ (e)=> this.handleChange(e)}  />
               <input type="submit" name="submit" value="Submit" /></form>
