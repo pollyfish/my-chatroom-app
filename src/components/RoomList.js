@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Modal from './Modal';
+import Modal from './modal';
 class RoomList extends Component {
   constructor(props){
     super(props);
