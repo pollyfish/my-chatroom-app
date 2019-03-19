@@ -35,12 +35,12 @@ componentDidMount() {
 
 /*clearField(e) {
 if(document.getElementById) {
-document.chatform.roomname.value = "";
+document.chatform.roomname.value == " ";
 }
+}
+clearText= () => {
+  document.getElementById("roomname").value = " ";
 }*/
-clearField= () => {
-  document.getElementById("chatform").reset();
-}
 
 
 toggleModal = () => {
@@ -48,6 +48,22 @@ toggleModal = () => {
       isOpen: !this.state.isOpen
     });
   }
+
+/*fillField(input,val)  {
+  if(input.value=="")
+  input.value=val;
+};
+
+clearField(e) {
+  if(document.getElementById===e)
+  document.chatform.roomname.value = "";
+};*/
+
+clearField(e) {
+  if(e.value===e)
+  e.value = "";
+};
+
 
 
 
@@ -68,9 +84,9 @@ render() {
             <Modal show={this.state.isOpen}
               onClose={this.toggleModal}>
               Create new Room
-              <form id="chatform"onSubmit={ (e)=> this.createRoom(e)}>
+              <form id="chatform" onSubmit={ (e)=> this.createRoom(e)} onblur={ (e)=> this.clearField(e)}>
               <input type="text" id="roomname" value={this.state.newRoomName}
-              onChange={ (e)=> this.handleChange(e)} />
+              onChange={ (e)=> this.handleChange(e)}  />
               <input type="submit" name="submit" value="Submit" /></form>
             </Modal>
 </div>
