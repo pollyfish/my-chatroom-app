@@ -6,6 +6,10 @@ class MessageList extends Component {
 
 this.state= {
   message: [],
+  roomId: "",
+  username: "",
+  content: "",
+  sentAt: ""
   //activeRoom:""
 
 };

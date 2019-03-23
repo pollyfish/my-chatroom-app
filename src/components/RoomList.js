@@ -10,7 +10,7 @@ class RoomList extends Component {
       rooms: [],
       newRoomName:'',
       isOpen: false,
-    //  activeRoom: ""
+
         };
 
   }
