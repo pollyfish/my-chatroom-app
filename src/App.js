@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList.js';
+import MessageList from './components/MessageList.js';
 //<script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
 // Initialize Firebase
   var config = {
@@ -18,33 +19,38 @@ firebase.initializeApp(config);
 
 
 class App extends Component {
+constructor(props) {
+  super(props);
+
+  this.state= {
+    activeRoom:""
+  };
+}
+
+setActiveRoom(room) {
+  this.setState({activeRoom: room });
+
+}
+
+
+
   render() {
     return (
-
-      <div>
+ //[pass set activeroom as a property to roomlist]
+     //[pass active room state var to message list]
+       <div className=
+       "App">
        <h1>Welcome!</h1>
+
        <RoomList firebase={firebase}
-
-      />
-
+       //selectedRoom={this.state.activeRoom}
+       setActiveRoom={(room)=> this.setActiveRoom(room)}/>
+    <h2>Messages</h2>
+       <MessageList firebase={firebase}
+       selectedRoom={this.state.activeRoom}/>
 
      </div>
-      /*all this can be deleted- <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>*/
+
     );
   }
 }
