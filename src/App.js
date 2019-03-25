@@ -3,6 +3,7 @@ import * as firebase from 'firebase';
 import './App.css';
 import RoomList from './components/RoomList.js';
 import MessageList from './components/MessageList.js';
+//import User from './components/User.js';
 
 
 var config = {
@@ -22,16 +23,17 @@ class App extends Component {
     super(props);
 
     this.state= {
-      activeRoom:""
+      activeRoom:"",
+      user:""
     };
   }
 
-  setActiveRoom(room) {
+setActiveRoom(room) {
     this.setState({activeRoom: room });
 
   }
 
-
+//<User firebase={firebase} setUser={this.setUser} user={this.state.user}/>
 
   render() {
     return (
@@ -41,10 +43,12 @@ class App extends Component {
       <h1>Welcome!</h1>
 
       <RoomList firebase={firebase}
+      selectedRoom={this.state.activeRoom}
       setActiveRoom={(room)=> this.setActiveRoom(room)}/>
       <h2>Messages</h2>
       <MessageList firebase={firebase}
-      selectedRoom={this.state.activeRoom}/>
+      selectedRoom={this.state.activeRoom}user={this.state.user}/>
+
 
       </div>
 
