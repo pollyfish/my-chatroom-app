@@ -33,6 +33,9 @@
       this.roomsRef.push({ name: this.state.newRoomName });
       this.setState({ newRoomName: '' });
     }
+    deleteRoom(e) {
+      const {rooms} = this.state
+    }
 
     toggleModal = () => {
       this.setState({
